@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    environment: kalpesh
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      environment: kalpesh
+  template:
+    metadata:
+      labels:
+        environment: kalpesh
+    spec:
+      containers:
+      - image: kalpeshreg.azurecr.io/maven
+        imagePullPolicy: Always
+        name: nginx-container
+        ports:
+        - containerPort: 8080

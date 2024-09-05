@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    environment: kalpesh
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      environment: kalpesh
+  template:
+    metadata:
+      labels:
+        environment: kalpesh
+    spec:
+      containers:
+      - image: kalpeshsonar.azurecr.io/sonarqube
+        imagePullPolicy: Always
+        name: nginx-container
+        ports:
+        - containerPort: 9000
